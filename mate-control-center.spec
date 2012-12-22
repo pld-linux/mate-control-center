@@ -1,12 +1,12 @@
 Summary:	MATE Desktop control-center
 Name:		mate-control-center
 Version:	1.5.2
-Release:	0.1
+Release:	0.2
 License:	LGPLv2+ and GPLv2+
-URL:		http://mate-desktop.org/
+Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	265cff2fa1b3c1c4232bb1743d079c73
-Group:		X11/Applications
+URL:		http://mate-desktop.org/
 BuildRequires:	desktop-file-utils
 BuildRequires:	icon-naming-utils
 BuildRequires:	mate-common
@@ -33,6 +33,7 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xkbfile)
 BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	pkgconfig(xxf86misc)
+BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -99,7 +100,7 @@ $RPM_BUILD_ROOT%{_desktopdir}/*.desktop
 # delete mime cache
 %{__rm} $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 
-%find_lang %{name}
+%find_lang %{name} --with-mate --with-omf --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -138,10 +139,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.mate.*.xml
 %{_datadir}/mate-control-center
 %{_datadir}/mate/cursor-fonts/*.pcf
-%{_datadir}/mate/help/mate-control-center
 %{_datadir}/mime/packages/mate-theme-package.xml
 %{_datadir}/thumbnailers/mate-font-viewer.thumbnailer
-%{_datadir}/omf/mate-control-center
 %{_datadir}/polkit-1/actions/org.mate.randr.policy
 
 # XXX proper package
