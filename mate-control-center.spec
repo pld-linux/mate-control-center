@@ -1,7 +1,7 @@
 Summary:	MATE Desktop control-center
 Name:		mate-control-center
 Version:	1.5.3
-Release:	1
+Release:	2
 License:	LGPL v2+ and GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -37,22 +37,34 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXxf86misc-devel
 BuildRequires:	xorg-lib-libxkbfile-devel
 BuildRequires:	xz
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	desktop-file-utils
 Requires:	glib2 >= 1:2.26.0
 Requires:	gsettings-desktop-schemas
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	shared-mime-info
-Requires(post,postun):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-MATE Desktop Control Center
+MATE Desktop Control Center.
+
+%package libs
+Summary:	MATE Control Center libmate-window-settings library
+Summary(pl.UTF-8):	Biblioteka Control Center libmate-window-settings
+Group:		X11/Libraries
+Conflicts:	mate-control-center < 1.5.3-2
+
+%description libs
+This package contains libmate-window-settings library.
+
+%description libs -l pl.UTF-8
+Pakiet ten zawiera bibliotekę libmate-window-settings.
 
 %package devel
 Summary:	Development files for mate-settings-daemon
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Development files for mate-control-center
@@ -100,18 +112,19 @@ $RPM_BUILD_ROOT%{_desktopdir}/*.desktop
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 %update_desktop_database
 %update_icon_cache hicolor
 %update_mime_database
 %glib_compile_schemas
 
 %postun
-/sbin/ldconfig
 %update_desktop_database_postun
 %update_icon_cache hicolor
 %update_mime_database
 %glib_compile_schemas
+
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -133,10 +146,11 @@ rm -rf $RPM_BUILD_ROOT
 # referred as builtins in capplets/common/mate-theme-info.c
 # http://git.gnome.org/browse/gnome-control-center/tree/capplets/common/gnome-theme-info.c?id=GNOME_CONTROL_CENTER_2_32_1
 %dir %{_datadir}/mate/cursor-fonts
-# TODO: maybe .gzlike other fonts in /usr/share/fonts/misc/*.pcf.gz?
+# TODO: maybe .gzlike other fonts in %{_datadir}/fonts/misc/*.pcf.gz?
 %{_datadir}/mate/cursor-fonts/*.pcf
 
-# -libs
+%files libs
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmate-window-settings.so.*.*.*
 %ghost %{_libdir}/libmate-window-settings.so.1
 %attr(755,root,root) %{_libdir}/libslab.so.*.*.*
