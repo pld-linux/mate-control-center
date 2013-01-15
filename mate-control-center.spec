@@ -2,40 +2,40 @@ Summary:	MATE Desktop control-center
 Name:		mate-control-center
 Version:	1.5.2
 Release:	0.2
-License:	LGPLv2+ and GPLv2+
+License:	LGPL v2+ and GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	265cff2fa1b3c1c4232bb1743d079c73
-URL:		http://mate-desktop.org/
+URL:		http://wiki.mate-desktop.org/mate-control-center
+BuildRequires:	dbus-glib-devel
+BuildRequires:	dconf-devel
 BuildRequires:	desktop-file-utils
+BuildRequires:	gsettings-desktop-schemas-devel
+BuildRequires:	gtk+2-devel
 BuildRequires:	icon-naming-utils
+BuildRequires:	libcanberra-devel
+BuildRequires:	libmatekbd-devel
+BuildRequires:	libmatenotify-devel
+BuildRequires:	librsvg-devel
+BuildRequires:	libunique-devel
+BuildRequires:	libxklavier-devel
 BuildRequires:	mate-common
-BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(dconf)
-BuildRequires:	pkgconfig(gsettings-desktop-schemas)
-BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(ice)
-BuildRequires:	pkgconfig(libcanberra)
-BuildRequires:	pkgconfig(libmarco-private)
-BuildRequires:	pkgconfig(libmate-menu)
-BuildRequires:	pkgconfig(libmatekbd)
-BuildRequires:	pkgconfig(libmatenotify)
-BuildRequires:	pkgconfig(librsvg-2.0)
-BuildRequires:	pkgconfig(libxklavier)
-BuildRequires:	pkgconfig(mate-desktop-2.0)
-BuildRequires:	pkgconfig(mate-doc-utils)
-BuildRequires:	pkgconfig(mate-settings-daemon)
-BuildRequires:	pkgconfig(nss)
-BuildRequires:	pkgconfig(polkit-agent-1)
-BuildRequires:	pkgconfig(sm)
-BuildRequires:	pkgconfig(unique-1.0)
-BuildRequires:	pkgconfig(xext)
-BuildRequires:	pkgconfig(xkbfile)
-BuildRequires:	pkgconfig(xscrnsaver)
-BuildRequires:	pkgconfig(xxf86misc)
+BuildRequires:	mate-desktop-devel
+BuildRequires:	mate-doc-utils
+BuildRequires:	mate-menus-devel
+BuildRequires:	mate-settings-daemon-devel
+BuildRequires:	mate-window-manager-devel
+BuildRequires:	nss-devel
+BuildRequires:	polkit-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	xorg-lib-libICE-devel
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libXScrnSaver-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXxf86misc-devel
+BuildRequires:	xorg-lib-libxkbfile-devel
 BuildRequires:	xz
 Requires:	desktop-file-utils
 Requires:	glib2 >= 1:2.26.0
