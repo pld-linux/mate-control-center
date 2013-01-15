@@ -1,7 +1,7 @@
 Summary:	MATE Desktop control-center
 Name:		mate-control-center
 Version:	1.5.3
-Release:	0.2
+Release:	1
 License:	LGPL v2+ and GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -123,23 +123,24 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/window-manager-settings/libmarco.so
 %{_desktopdir}/*.desktop
 %{_datadir}/desktop-directories/matecc.directory
-%{_iconsdir}/hicolor/*/apps/*.png
-%{_iconsdir}/hicolor/scalable/apps/mate-*.svg
+%{_iconsdir}/hicolor/*/apps/*.*
 %{_datadir}/glib-2.0/schemas/org.mate.*.xml
 %{_datadir}/mate-control-center
-%{_datadir}/mate/cursor-fonts/*.pcf
 %{_datadir}/mime/packages/mate-theme-package.xml
 %{_datadir}/thumbnailers/mate-font-viewer.thumbnailer
 %{_datadir}/polkit-1/actions/org.mate.randr.policy
+
+# referred as builtins in capplets/common/mate-theme-info.c
+# http://git.gnome.org/browse/gnome-control-center/tree/capplets/common/gnome-theme-info.c?id=GNOME_CONTROL_CENTER_2_32_1
+%dir %{_datadir}/mate/cursor-fonts
+# TODO: maybe .gzlike other fonts in /usr/share/fonts/misc/*.pcf.gz?
+%{_datadir}/mate/cursor-fonts/*.pcf
 
 # -libs
 %attr(755,root,root) %{_libdir}/libmate-window-settings.so.*.*.*
 %ghost %{_libdir}/libmate-window-settings.so.1
 %attr(755,root,root) %{_libdir}/libslab.so.*.*.*
 %ghost %{_libdir}/libslab.so.0
-
-# XXX proper package
-%dir %{_datadir}/mate/cursor-fonts
 
 %files devel
 %defattr(644,root,root,755)
