@@ -1,11 +1,11 @@
 Summary:	MATE Desktop control-center
 Name:		mate-control-center
-Version:	1.5.3
-Release:	2
+Version:	1.5.4
+Release:	1
 License:	LGPL v2+ and GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
-# Source0-md5:	7647989b5014143547fc09c5f25821d2
+# Source0-md5:	71545e5ffe56f45da2fe8f6cac6c8009
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	dbus-glib-devel
 BuildRequires:	dconf-devel
