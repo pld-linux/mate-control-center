@@ -10,10 +10,8 @@ URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	dbus-glib-devel
 BuildRequires:	dconf-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	gsettings-desktop-schemas-devel
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gtk+2-devel
-BuildRequires:	icon-naming-utils
-BuildRequires:	libcanberra-devel
 BuildRequires:	libmatekbd-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libunique-devel
@@ -24,8 +22,6 @@ BuildRequires:	mate-doc-utils
 BuildRequires:	mate-menus-devel
 BuildRequires:	mate-settings-daemon-devel
 BuildRequires:	mate-window-manager-devel
-BuildRequires:	nss-devel
-BuildRequires:	polkit-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	tar >= 1:1.22
