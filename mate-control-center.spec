@@ -1,7 +1,7 @@
 Summary:	MATE Desktop control-center
 Name:		mate-control-center
 Version:	1.5.5
-Release:	1
+Release:	2
 License:	LGPL v2+ and GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -39,6 +39,7 @@ Requires:	gsettings-desktop-schemas
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	shared-mime-info
+Conflicts:	libfm < 0.1.17-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
