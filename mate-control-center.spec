@@ -1,11 +1,11 @@
 Summary:	MATE Desktop control-center
 Name:		mate-control-center
-Version:	1.5.5
-Release:	2
+Version:	1.6.0
+Release:	1
 License:	LGPL v2+ and GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
-# Source0-md5:	ea05c8c897bc2ce06297a617e5e6de13
+Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
+# Source0-md5:	02f4b38579e1aa1b3d008f82c4831359
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	dbus-glib-devel
 BuildRequires:	dconf-devel
@@ -40,6 +40,7 @@ Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
+Conflicts:	lxappearance < 0.5.2-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
