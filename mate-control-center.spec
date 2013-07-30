@@ -1,11 +1,11 @@
 Summary:	MATE Desktop control-center
 Name:		mate-control-center
-Version:	1.6.0
+Version:	1.6.1
 Release:	1
 License:	LGPL v2+ and GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	02f4b38579e1aa1b3d008f82c4831359
+# Source0-md5:	a5f5b3c6070f3dafacaf68f6d896ef50
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	dbus-glib-devel
 BuildRequires:	dconf-devel
@@ -70,7 +70,12 @@ Development files for mate-control-center
 %setup -q
 
 %build
-NOCONFIGURE=1 ./autogen.sh
+%{__intltoolize}
+%{?with_apidocs:%{__gtkdocize}}
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
+%{__automake}
 %configure \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-static \
@@ -159,7 +164,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/mate-window-settings-2.0
 %{_libdir}/libmate-window-settings.so
 %{_libdir}/libslab.so
-%{_npkgconfigdir}/mate-default-applications.pc
-%{_npkgconfigdir}/mate-keybindings.pc
+%{_pkgconfigdir}/mate-default-applications.pc
+%{_pkgconfigdir}/mate-keybindings.pc
 %{_pkgconfigdir}/libslab.pc
 %{_pkgconfigdir}/mate-window-settings-2.0.pc
+%{_mandir}/man1/mate-about-me.1*
+%{_mandir}/man1/mate-appearance-properties.1*
+%{_mandir}/man1/mate-default-applications-properties.1*
