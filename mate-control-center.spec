@@ -1,9 +1,12 @@
-# TODO: appindicator-0.1 >= 0.0.7
+# TODO
+# - appindicator-0.1 >= 0.0.7
+# - .pcf fonts compress and move to system fonts dir
+#
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
 Version:	1.6.1
-Release:	1
+Release:	2
 License:	LGPL v2+ (libslab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
@@ -187,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.mate.control-center*.gschema.xml
 # cursor fonts referred as builtins in capplets/common/mate-theme-info.c
 %dir %{_datadir}/mate/cursor-fonts
-# TODO: maybe .gzlike other fonts in %{_datadir}/fonts/misc/*.pcf.gz?
+# TODO: maybe .gz, like other fonts in %{_datadir}/fonts/misc/*.pcf.gz?
 %{_datadir}/mate/cursor-fonts/*.pcf
 %dir %{_datadir}/mate-control-center
 %dir %{_datadir}/mate-control-center/keybindings
