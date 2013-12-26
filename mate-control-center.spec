@@ -1,55 +1,84 @@
+# TODO: appindicator-0.1 >= 0.0.7
 Summary:	MATE Desktop control-center
+Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
 Version:	1.6.1
 Release:	1
-License:	LGPL v2+ and GPL v2+
+License:	LGPL v2+ (libslab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
 # Source0-md5:	a5f5b3c6070f3dafacaf68f6d896ef50
 URL:		http://wiki.mate-desktop.org/mate-control-center
+BuildRequires:	autoconf >= 2.53
+BuildRequires:	automake >= 1:1.9
+BuildRequires:	dbus-devel
 BuildRequires:	dbus-glib-devel
-BuildRequires:	dconf-devel
+BuildRequires:	dconf-devel >= 0.13.4
 BuildRequires:	desktop-file-utils
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gtk+2-devel
-BuildRequires:	libmatekbd-devel
-BuildRequires:	librsvg-devel
+BuildRequires:	gettext-devel >= 0.10.40
+BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	intltool >= 0.37.1
+BuildRequires:	libcanberra-gtk-devel
+BuildRequires:	libmatekbd-devel >= 1.1.0
+BuildRequires:	librsvg-devel >= 2.0
+BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libunique-devel
-BuildRequires:	libxklavier-devel
+BuildRequires:	libxklavier-devel >= 4.0
+BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel
+BuildRequires:	mate-desktop-devel >= 1.5.2
 BuildRequires:	mate-doc-utils
-BuildRequires:	mate-menus-devel
-BuildRequires:	mate-settings-daemon-devel
-BuildRequires:	mate-window-manager-devel
+BuildRequires:	mate-menus-devel >= 1.1.0
+BuildRequires:	mate-settings-daemon-devel >= 1.5.2
+BuildRequires:	mate-window-manager-devel >= 1.5.0
+BuildRequires:	pango-devel
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXScrnSaver-devel
+BuildRequires:	xorg-lib-libXcursor-devel
 BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXft-devel
+BuildRequires:	xorg-lib-libXi-devel >= 1.2
 BuildRequires:	xorg-lib-libXxf86misc-devel
-BuildRequires:	xorg-lib-libxkbfile-devel
 BuildRequires:	xz
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	dconf >= 0.13.4
 Requires:	desktop-file-utils
-Requires:	glib2 >= 1:2.26.0
 Requires:	gsettings-desktop-schemas
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
+Requires:	libmatekbd >= 1.1.0
+Requires:	libxklavier >= 4.0
+Requires:	mate-window-manager-libs >= 1.5.0
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-MATE Desktop Control Center.
+MATE Desktop Control Center. The control center is MATE's main
+interface for configuration of various aspects of your desktop.
+
+%description -l pl.UTF-8
+Centrum sterowania środowiska MATE Desktop. Jest to główny interfejs
+do konfigurowania różnych aspektów pulpitu.
 
 %package libs
 Summary:	MATE Control Center libmate-window-settings library
-Summary(pl.UTF-8):	Biblioteka Control Center libmate-window-settings
+Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
+Requires:	glib2 >= 1:2.26.0
+Requires:	gtk+2 >= 2:2.20.0
+Requires:	mate-desktop-libs >= 1.5.2
+Requires:	mate-menus-libs >= 1.1.0
+Requires:	xorg-lib-libXi >= 1.2
 Conflicts:	mate-control-center < 1.5.3-2
 
 %description libs
@@ -59,40 +88,45 @@ This package contains libmate-window-settings library.
 Pakiet ten zawiera bibliotekę libmate-window-settings.
 
 %package devel
-Summary:	Development files for mate-settings-daemon
+Summary:	Development files for libmate-window-settings library
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki libmate-window-settings
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.26.0
+Requires:	gtk+2-devel >= 2:2.20.0
+Requires:	mate-desktop-devel >= 1.5.2
+Requires:	mate-menus-devel >= 1.1.0
 
 %description devel
-Development files for mate-control-center
+Development files for libmate-window-settings library.
+
+%description devel -l pl.UTF-8
+Pliki programistyczne biblioteki libmate-window-settings.
 
 %prep
 %setup -q
 
 %build
 %{__intltoolize}
-%{?with_apidocs:%{__gtkdocize}}
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-html-dir=%{_gtkdocdir} \
-	--disable-static \
 	--disable-schemas-compile \
-	--disable-update-mimedb \
-	--disable-scrollkeeper
+	--disable-scrollkeeper \
+	--disable-silent-rules \
+	--disable-static \
+	--disable-update-mimedb
 
-%{__make} \
-	V=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmate-window-settings.la
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libslab.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
 
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
@@ -103,12 +137,13 @@ desktop-file-install \
 	--add-category="X-Mate" \
 	--delete-original \
 	--dir=$RPM_BUILD_ROOT%{_desktopdir} \
-$RPM_BUILD_ROOT%{_desktopdir}/*.desktop
+	$RPM_BUILD_ROOT%{_desktopdir}/*.desktop
 
 # delete mime cache
 %{__rm} $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 
-%find_lang %{name} --with-mate --with-omf --all-name
+%find_lang %{name} --with-mate --with-omf
+# --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -130,44 +165,72 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING README
-%{_sysconfdir}/xdg/menus/matecc.menu
-%attr(755,root,root) %{_bindir}/mate-*
+%doc AUTHORS ChangeLog NEWS README TODO
+%attr(755,root,root) %{_bindir}/mate-about-me
+%attr(755,root,root) %{_bindir}/mate-appearance-properties
+%attr(755,root,root) %{_bindir}/mate-at-properties
+%attr(755,root,root) %{_bindir}/mate-control-center
+%attr(755,root,root) %{_bindir}/mate-default-applications-properties
+%attr(755,root,root) %{_bindir}/mate-display-properties
+%attr(755,root,root) %{_bindir}/mate-font-viewer
+%attr(755,root,root) %{_bindir}/mate-keybinding-properties
+%attr(755,root,root) %{_bindir}/mate-keyboard-properties
+%attr(755,root,root) %{_bindir}/mate-mouse-properties
+%attr(755,root,root) %{_bindir}/mate-network-properties
+%attr(755,root,root) %{_bindir}/mate-thumbnail-font
+%attr(755,root,root) %{_bindir}/mate-typing-monitor
+%attr(755,root,root) %{_bindir}/mate-window-properties
 %attr(755,root,root) %{_sbindir}/mate-display-properties-install-systemwide
 %dir %{_libdir}/window-manager-settings
 %attr(755,root,root) %{_libdir}/window-manager-settings/libmarco.so
-%{_desktopdir}/*.desktop
+%{_sysconfdir}/xdg/menus/matecc.menu
 %{_datadir}/desktop-directories/matecc.directory
-%{_iconsdir}/hicolor/*/apps/*.*
-%{_datadir}/glib-2.0/schemas/org.mate.*.xml
-%{_datadir}/mate-control-center
-%{_datadir}/mime/packages/mate-theme-package.xml
-%{_datadir}/thumbnailers/mate-font-viewer.thumbnailer
-%{_datadir}/polkit-1/actions/org.mate.randr.policy
-
-# referred as builtins in capplets/common/mate-theme-info.c
-# http://git.gnome.org/browse/gnome-control-center/tree/capplets/common/gnome-theme-info.c?id=GNOME_CONTROL_CENTER_2_32_1
+%{_datadir}/glib-2.0/schemas/org.mate.control-center*.gschema.xml
+# cursor fonts referred as builtins in capplets/common/mate-theme-info.c
 %dir %{_datadir}/mate/cursor-fonts
 # TODO: maybe .gzlike other fonts in %{_datadir}/fonts/misc/*.pcf.gz?
 %{_datadir}/mate/cursor-fonts/*.pcf
+%dir %{_datadir}/mate-control-center
+%dir %{_datadir}/mate-control-center/keybindings
+%{_datadir}/mate-control-center/keybindings/00-multimedia-key.xml
+%{_datadir}/mate-control-center/keybindings/01-desktop-key.xml
+%{_datadir}/mate-control-center/pixmaps
+%{_datadir}/mate-control-center/ui
+%{_datadir}/mime/packages/mate-theme-package.xml
+%{_datadir}/thumbnailers/mate-font-viewer.thumbnailer
+%{_datadir}/polkit-1/actions/org.mate.randr.policy
+%{_desktopdir}/at-properties.desktop
+%{_desktopdir}/display-properties.desktop
+%{_desktopdir}/keyboard.desktop
+%{_desktopdir}/mate-about-me.desktop
+%{_desktopdir}/mate-appearance-properties.desktop
+%{_desktopdir}/mate-default-applications-properties.desktop
+%{_desktopdir}/mate-font-viewer.desktop
+%{_desktopdir}/mate-keybinding.desktop
+%{_desktopdir}/mate-network-properties.desktop
+%{_desktopdir}/mate-settings-mouse.desktop
+%{_desktopdir}/mate-theme-installer.desktop
+%{_desktopdir}/matecc.desktop
+%{_desktopdir}/window-properties.desktop
+%{_iconsdir}/hicolor/*/apps/mate-*.*
+%{_mandir}/man1/mate-about-me.1*
+%{_mandir}/man1/mate-appearance-properties.1*
+%{_mandir}/man1/mate-default-applications-properties.1*
 
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmate-window-settings.so.*.*.*
-%ghost %{_libdir}/libmate-window-settings.so.1
+%attr(755,root,root) %ghost %{_libdir}/libmate-window-settings.so.1
 %attr(755,root,root) %{_libdir}/libslab.so.*.*.*
-%ghost %{_libdir}/libslab.so.0
+%attr(755,root,root) %ghost %{_libdir}/libslab.so.0
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libmate-window-settings.so
+%attr(755,root,root) %{_libdir}/libslab.so
 %{_includedir}/libslab
 %{_includedir}/mate-window-settings-2.0
-%{_libdir}/libmate-window-settings.so
-%{_libdir}/libslab.so
+%{_pkgconfigdir}/libslab.pc
 %{_pkgconfigdir}/mate-default-applications.pc
 %{_pkgconfigdir}/mate-keybindings.pc
-%{_pkgconfigdir}/libslab.pc
 %{_pkgconfigdir}/mate-window-settings-2.0.pc
-%{_mandir}/man1/mate-about-me.1*
-%{_mandir}/man1/mate-appearance-properties.1*
-%{_mandir}/man1/mate-default-applications-properties.1*
