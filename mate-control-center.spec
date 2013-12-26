@@ -143,7 +143,6 @@ desktop-file-install \
 %{__rm} $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 
 %find_lang %{name} --with-mate --with-omf
-# --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
