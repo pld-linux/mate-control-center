@@ -1,6 +1,8 @@
 # TODO
-# - appindicator-0.1 >= 0.0.7
 # - .pcf fonts compress and move to system fonts dir
+#
+# Conditional build:
+%bcond_without	appindicator	# application indicators support (in mate-typing-monitor)
 #
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
@@ -23,6 +25,7 @@ BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	intltool >= 0.37.1
+%{?with_appindicator:BuildRequires:	libappindicator-gtk2-devel >= 0.0.7}
 BuildRequires:	libcanberra-gtk-devel
 BuildRequires:	libmatekbd-devel >= 1.1.0
 BuildRequires:	librsvg-devel >= 2.0
@@ -116,6 +119,7 @@ Pliki programistyczne biblioteki libmate-window-settings.
 %{__autoconf}
 %{__automake}
 %configure \
+	%{!?with_appindicator:--disable-appindicator} \
 	--disable-schemas-compile \
 	--disable-scrollkeeper \
 	--disable-silent-rules \
