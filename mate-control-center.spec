@@ -7,12 +7,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.6.1
-Release:	2
+Version:	1.6.2
+Release:	1
 License:	LGPL v2+ (libslab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	a5f5b3c6070f3dafacaf68f6d896ef50
+# Source0-md5:	d60dd049dab2163c7208478d962bf4db
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -205,19 +205,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/mate-theme-package.xml
 %{_datadir}/thumbnailers/mate-font-viewer.thumbnailer
 %{_datadir}/polkit-1/actions/org.mate.randr.policy
-%{_desktopdir}/at-properties.desktop
-%{_desktopdir}/display-properties.desktop
-%{_desktopdir}/keyboard.desktop
 %{_desktopdir}/mate-about-me.desktop
 %{_desktopdir}/mate-appearance-properties.desktop
+%{_desktopdir}/mate-at-properties.desktop
 %{_desktopdir}/mate-default-applications-properties.desktop
+%{_desktopdir}/mate-display-properties.desktop
 %{_desktopdir}/mate-font-viewer.desktop
 %{_desktopdir}/mate-keybinding.desktop
+%{_desktopdir}/mate-keyboard.desktop
 %{_desktopdir}/mate-network-properties.desktop
 %{_desktopdir}/mate-settings-mouse.desktop
 %{_desktopdir}/mate-theme-installer.desktop
+%{_desktopdir}/mate-window-properties.desktop
 %{_desktopdir}/matecc.desktop
-%{_desktopdir}/window-properties.desktop
 %{_iconsdir}/hicolor/*/apps/mate-*.*
 %{_mandir}/man1/mate-about-me.1*
 %{_mandir}/man1/mate-appearance-properties.1*
