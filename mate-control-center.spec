@@ -7,12 +7,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.6.2
+Version:	1.8.0
 Release:	1
 License:	LGPL v2+ (libslab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	d60dd049dab2163c7208478d962bf4db
+Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	752c4210541b17e842ba09af63e2410a
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -33,12 +33,11 @@ BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libunique-devel
 BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel >= 2.0
+BuildRequires:	marco-devel >= 1.5.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.5.2
-BuildRequires:	mate-doc-utils
+BuildRequires:	mate-desktop-devel >= 1.7.3
 BuildRequires:	mate-menus-devel >= 1.1.0
 BuildRequires:	mate-settings-daemon-devel >= 1.5.2
-BuildRequires:	mate-window-manager-devel >= 1.5.0
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -54,6 +53,7 @@ BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXi-devel >= 1.2
 BuildRequires:	xorg-lib-libXxf86misc-devel
 BuildRequires:	xz
+BuildRequires:	yelp-tools
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	dconf >= 0.13.4
 Requires:	desktop-file-utils
@@ -62,7 +62,7 @@ Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	libmatekbd >= 1.1.0
 Requires:	libxklavier >= 4.0
-Requires:	mate-window-manager-libs >= 1.5.0
+Requires:	marco-libs >= 1.5.0
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
@@ -135,6 +135,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ca@valencia
 
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/mate-control-center.convert
