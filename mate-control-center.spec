@@ -3,16 +3,16 @@
 #
 # Conditional build:
 %bcond_without	appindicator	# application indicators support (in mate-typing-monitor)
-#
+
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.8.0
+Version:	1.8.1
 Release:	1
 License:	LGPL v2+ (libslab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	752c4210541b17e842ba09af63e2410a
+# Source0-md5:	03785befc0608dd1bd113c272c4d40e0
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
