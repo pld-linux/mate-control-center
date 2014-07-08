@@ -3,6 +3,7 @@
 #
 # Conditional build:
 %bcond_without	appindicator	# application indicators support (in mate-typing-monitor)
+%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
@@ -23,14 +24,17 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
-BuildRequires:	gtk+2-devel >= 2:2.20.0
+%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
+%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 BuildRequires:	intltool >= 0.37.1
 %{?with_appindicator:BuildRequires:	libappindicator-gtk2-devel >= 0.0.7}
-BuildRequires:	libcanberra-gtk-devel
+%{!?with_gtk3:BuildRequires:	libcanberra-gtk-devel}
+%{?with_gtk3:BuildRequires:	libcanberra-gtk3-devel}
 BuildRequires:	libmatekbd-devel >= 1.1.0
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libtool >= 1:1.4.3
-BuildRequires:	libunique-devel
+%{!?with_gtk3:BuildRequires:	libunique-devel}
+%{?with_gtk3:BuildRequires:	libunique3-devel}
 BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	marco-devel >= 1.5.0
@@ -81,8 +85,9 @@ Summary:	MATE Control Center libmate-window-settings library
 Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.26.0
-Requires:	gtk+2 >= 2:2.20.0
-Requires:	mate-desktop-libs >= 1.5.2
+%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
+%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	mate-desktop-libs >= 1.7.3
 Requires:	mate-menus-libs >= 1.1.0
 Requires:	xorg-lib-libXi >= 1.2
 Conflicts:	mate-control-center < 1.5.3-2
@@ -99,8 +104,9 @@ Summary(pl.UTF-8):	Pliki programistyczne biblioteki libmate-window-settings
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.26.0
-Requires:	gtk+2-devel >= 2:2.20.0
-Requires:	mate-desktop-devel >= 1.5.2
+%{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.24.0}
+%{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
+Requires:	mate-desktop-devel >= 1.7.3
 Requires:	mate-menus-devel >= 1.1.0
 
 %description devel
@@ -121,10 +127,10 @@ Pliki programistyczne biblioteki libmate-window-settings.
 %configure \
 	%{!?with_appindicator:--disable-appindicator} \
 	--disable-schemas-compile \
-	--disable-scrollkeeper \
 	--disable-silent-rules \
 	--disable-static \
-	--disable-update-mimedb
+	--disable-update-mimedb \
+	%{?with_gtk3:--with-gtk=3.0}
 
 %{__make}
 
@@ -135,8 +141,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ca@valencia
 
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/mate-control-center.convert
@@ -151,7 +155,10 @@ desktop-file-install \
 # delete mime cache
 %{__rm} $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 
-%find_lang %{name} --with-mate --with-omf
+# so far (July 2014) it's the only package that ships Valencian variant of GNOME/MATE help
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ca@valencia
+
+%find_lang %{name} --with-mate
 
 %clean
 rm -rf $RPM_BUILD_ROOT
