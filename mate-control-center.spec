@@ -8,12 +8,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.8.1
+Version:	1.8.2
 Release:	1
 License:	LGPL v2+ (libslab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	03785befc0608dd1bd113c272c4d40e0
+# Source0-md5:	d6c98a8b230090e4728853f07efcb558
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
