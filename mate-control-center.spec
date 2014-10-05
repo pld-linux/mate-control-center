@@ -66,7 +66,7 @@ Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	libmatekbd >= 1.1.0
 Requires:	libxklavier >= 4.0
-Requires:	marco-libs >= 1.5.0
+Requires:	marco-libs >= 1.8.2
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
