@@ -8,12 +8,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.10.2
+Version:	1.12.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	813b1acd28f556d7eb0f858984916a3a
+Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
+# Source0-md5:	abb6a90e04440470e385f158c4475020
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -22,11 +22,12 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	dconf-devel >= 0.13.4
 BuildRequires:	desktop-file-utils
 BuildRequires:	docbook-dtd412-xml
+BuildRequires:	freetype-devel >= 2
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.36
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
-BuildRequires:	intltool >= 0.37.1
+BuildRequires:	intltool >= 0.50.1
 %{?with_appindicator:BuildRequires:	libappindicator-gtk2-devel >= 0.0.7}
 %{!?with_gtk3:BuildRequires:	libcanberra-gtk-devel}
 %{?with_gtk3:BuildRequires:	libcanberra-gtk3-devel}
@@ -198,6 +199,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/mate-display-properties-install-systemwide
 %dir %{_libdir}/window-manager-settings
 %attr(755,root,root) %{_libdir}/window-manager-settings/libmarco.so
+%{_sysconfdir}/xdg/menus/mate-preferences-categories.menu
 %{_sysconfdir}/xdg/menus/matecc.menu
 %{_datadir}/desktop-directories/matecc.directory
 %{_datadir}/glib-2.0/schemas/org.mate.control-center*.gschema.xml
