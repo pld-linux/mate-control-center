@@ -40,9 +40,9 @@ BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	marco-devel >= 1.9.1
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.9.4
+BuildRequires:	mate-desktop-devel >= 1.11.0
 BuildRequires:	mate-menus-devel >= 1.1.0
-BuildRequires:	mate-settings-daemon-devel >= 1.5.2
+BuildRequires:	mate-settings-daemon-devel >= 1.11.0
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -88,7 +88,7 @@ Group:		X11/Libraries
 Requires:	glib2 >= 1:2.36
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
-Requires:	mate-desktop-libs >= 1.9.4
+Requires:	mate-desktop-libs >= 1.11.0
 Requires:	mate-menus-libs >= 1.1.0
 Requires:	xorg-lib-libXi >= 1.2
 Conflicts:	mate-control-center < 1.5.3-2
@@ -107,7 +107,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36
 %{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
-Requires:	mate-desktop-devel >= 1.9.4
+Requires:	mate-desktop-devel >= 1.11.0
 Requires:	mate-menus-devel >= 1.1.0
 
 %description devel
