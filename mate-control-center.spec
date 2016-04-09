@@ -8,12 +8,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.12.1
+Version:	1.14.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
-# Source0-md5:	e0667a3dfc49ca822399f06a82482dd3
+Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
+# Source0-md5:	a561755633f7643ac8ea0880f24205bc
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -42,7 +42,7 @@ BuildRequires:	marco-devel >= 1.9.1
 BuildRequires:	mate-common
 BuildRequires:	mate-desktop-devel >= 1.11.0
 BuildRequires:	mate-menus-devel >= 1.1.0
-BuildRequires:	mate-settings-daemon-devel >= 1.11.0
+BuildRequires:	mate-settings-daemon-devel >= 1.13.1
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -142,9 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
-
-# mate < 1.5 did not exist in pld, avoid dependency on mate-conf
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/mate-control-center.convert
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/jv
 
 desktop-file-install \
 	--remove-category="MATE" \
@@ -199,7 +197,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/mate-display-properties-install-systemwide
 %dir %{_libdir}/window-manager-settings
 %attr(755,root,root) %{_libdir}/window-manager-settings/libmarco.so
-%{_sysconfdir}/xdg/menus/mate-preferences-categories.menu
 %{_sysconfdir}/xdg/menus/matecc.menu
 %{_datadir}/desktop-directories/matecc.directory
 %{_datadir}/glib-2.0/schemas/org.mate.control-center*.gschema.xml
