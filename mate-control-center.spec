@@ -28,7 +28,10 @@ BuildRequires:	glib2-devel >= 1:2.36
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 BuildRequires:	intltool >= 0.50.1
-%{?with_appindicator:BuildRequires:	libappindicator-gtk2-devel >= 0.0.7}
+%if %{with appindicator}
+%{!?with_gtk3:BuildRequires:	libappindicator-gtk2-devel >= 0.0.13}
+%{?with_gtk3:BuildRequires:	libappindicator-gtk3-devel >= 0.0.13}
+%endif
 %{!?with_gtk3:BuildRequires:	libcanberra-gtk-devel}
 %{?with_gtk3:BuildRequires:	libcanberra-gtk3-devel}
 BuildRequires:	libmatekbd-devel >= 1.1.0
@@ -38,9 +41,9 @@ BuildRequires:	libtool >= 1:1.4.3
 %{?with_gtk3:BuildRequires:	libunique3-devel >= 3.0}
 BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	marco-devel >= 1.9.1
+BuildRequires:	marco-devel >= 1.13.1
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.11.0
+BuildRequires:	mate-desktop-devel >= 1.15.1
 BuildRequires:	mate-menus-devel >= 1.1.0
 BuildRequires:	mate-settings-daemon-devel >= 1.13.1
 BuildRequires:	pango-devel
@@ -65,9 +68,13 @@ Requires:	desktop-file-utils
 Requires:	gsettings-desktop-schemas
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
+%if %{with appindicator}
+%{!?with_gtk3:Requires:	libappindicator-gtk2 >= 0.0.13}
+%{?with_gtk3:Requires:	libappindicator-gtk3 >= 0.0.13}
+%endif
 Requires:	libmatekbd >= 1.1.0
 Requires:	libxklavier >= 4.0
-Requires:	marco-libs >= 1.9.1
+Requires:	marco-libs >= 1.13.1
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
@@ -88,7 +95,7 @@ Group:		X11/Libraries
 Requires:	glib2 >= 1:2.36
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
-Requires:	mate-desktop-libs >= 1.11.0
+Requires:	mate-desktop-libs >= 1.15.1
 Requires:	mate-menus-libs >= 1.1.0
 Requires:	xorg-lib-libXi >= 1.2
 Conflicts:	mate-control-center < 1.5.3-2
@@ -107,7 +114,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36
 %{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
-Requires:	mate-desktop-devel >= 1.11.0
+Requires:	mate-desktop-devel >= 1.15.1
 Requires:	mate-menus-devel >= 1.1.0
 
 %description devel
