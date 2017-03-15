@@ -1,19 +1,16 @@
-# TODO
-# - .pcf fonts compress and move to system fonts dir
 #
 # Conditional build:
 %bcond_without	appindicator	# application indicators support (in mate-typing-monitor)
-%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.16.1
+Version:	1.18.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
-# Source0-md5:	a5e2ac375961d9c2e998c836139dc023
+Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
+# Source0-md5:	f29ece6f74bbe2ed03887c16e98dcee4
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -25,27 +22,22 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	freetype-devel >= 2
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.36
-%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
+BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	intltool >= 0.50.1
 %if %{with appindicator}
-%{!?with_gtk3:BuildRequires:	libappindicator-gtk2-devel >= 0.0.13}
-%{?with_gtk3:BuildRequires:	libappindicator-gtk3-devel >= 0.0.13}
+BuildRequires:	libappindicator-gtk3-devel >= 0.0.13
 %endif
-%{!?with_gtk3:BuildRequires:	libcanberra-gtk-devel}
-%{?with_gtk3:BuildRequires:	libcanberra-gtk3-devel}
-BuildRequires:	libmatekbd-devel >= 1.1.0
+BuildRequires:	libcanberra-gtk3-devel
+BuildRequires:	libmatekbd-devel >= 1.17.0
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libtool >= 1:1.4.3
-%{!?with_gtk3:BuildRequires:	libunique-devel}
-%{?with_gtk3:BuildRequires:	libunique3-devel >= 3.0}
 BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	marco-devel >= 1.13.1
+BuildRequires:	marco-devel >= 1.17.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.15.1
+BuildRequires:	mate-desktop-devel >= 1.17.0
 BuildRequires:	mate-menus-devel >= 1.1.0
-BuildRequires:	mate-settings-daemon-devel >= 1.13.1
+BuildRequires:	mate-settings-daemon-devel >= 1.17.0
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -69,12 +61,11 @@ Requires:	gsettings-desktop-schemas
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 %if %{with appindicator}
-%{!?with_gtk3:Requires:	libappindicator-gtk2 >= 0.0.13}
-%{?with_gtk3:Requires:	libappindicator-gtk3 >= 0.0.13}
+Requires:	libappindicator-gtk3 >= 0.0.13
 %endif
-Requires:	libmatekbd >= 1.1.0
+Requires:	libmatekbd >= 1.17.0
 Requires:	libxklavier >= 4.0
-Requires:	marco-libs >= 1.13.1
+Requires:	marco-libs >= 1.17.0
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
@@ -93,8 +84,7 @@ Summary:	MATE Control Center libmate-window-settings library
 Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.36
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	mate-desktop-libs >= 1.15.1
 Requires:	mate-menus-libs >= 1.1.0
 Requires:	xorg-lib-libXi >= 1.2
@@ -112,8 +102,7 @@ Summary(pl.UTF-8):	Pliki programistyczne biblioteki libmate-window-settings
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36
-%{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
+Requires:	gtk+3-devel >= 3.14
 Requires:	mate-desktop-devel >= 1.15.1
 Requires:	mate-menus-devel >= 1.1.0
 
@@ -137,8 +126,7 @@ Pliki programistyczne biblioteki libmate-window-settings.
 	--disable-schemas-compile \
 	--disable-silent-rules \
 	--disable-static \
-	--disable-update-mimedb \
-	%{?with_gtk3:--with-gtk=3.0}
+	--disable-update-mimedb
 
 %{__make}
 
@@ -149,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,jv,pms}
 
 desktop-file-install \
 	--remove-category="MATE" \
@@ -207,10 +195,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/xdg/menus/matecc.menu
 %{_datadir}/desktop-directories/matecc.directory
 %{_datadir}/glib-2.0/schemas/org.mate.control-center*.gschema.xml
-# cursor fonts referred as builtins in capplets/common/mate-theme-info.c
-%dir %{_datadir}/mate/cursor-fonts
-# TODO: maybe .gz, like other fonts in %{_datadir}/fonts/misc/*.pcf.gz?
-%{_datadir}/mate/cursor-fonts/*.pcf
 %dir %{_datadir}/mate-control-center
 %dir %{_datadir}/mate-control-center/keybindings
 %{_datadir}/mate-control-center/keybindings/00-multimedia-key.xml
