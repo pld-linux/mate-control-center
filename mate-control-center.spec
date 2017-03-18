@@ -31,7 +31,7 @@ BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libmatekbd-devel >= 1.17.0
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libtool >= 1:1.4.3
-BuildRequires:	libxklavier-devel >= 4.0
+BuildRequires:	libxklavier-devel >= 5.2
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	marco-devel >= 1.17.0
 BuildRequires:	mate-common
@@ -50,7 +50,7 @@ BuildRequires:	xorg-lib-libXScrnSaver-devel
 BuildRequires:	xorg-lib-libXcursor-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXft-devel
-BuildRequires:	xorg-lib-libXi-devel >= 1.2
+BuildRequires:	xorg-lib-libXi-devel >= 1.5
 BuildRequires:	xorg-lib-libXxf86misc-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
@@ -64,8 +64,9 @@ Requires:	hicolor-icon-theme
 Requires:	libappindicator-gtk3 >= 0.0.13
 %endif
 Requires:	libmatekbd >= 1.17.0
-Requires:	libxklavier >= 4.0
+Requires:	libxklavier >= 5.2
 Requires:	marco-libs >= 1.17.0
+Requires:	mate-settings-daemon >= 1.17.0
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
@@ -85,9 +86,9 @@ Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.36
 Requires:	gtk+3 >= 3.14
-Requires:	mate-desktop-libs >= 1.15.1
+Requires:	mate-desktop-libs >= 1.17.0
 Requires:	mate-menus-libs >= 1.1.0
-Requires:	xorg-lib-libXi >= 1.2
+Requires:	xorg-lib-libXi >= 1.5
 Conflicts:	mate-control-center < 1.5.3-2
 
 %description libs
@@ -103,7 +104,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36
 Requires:	gtk+3-devel >= 3.14
-Requires:	mate-desktop-devel >= 1.15.1
+Requires:	mate-desktop-devel >= 1.17.0
 Requires:	mate-menus-devel >= 1.1.0
 
 %description devel
