@@ -5,12 +5,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.18.2
+Version:	1.20.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
-# Source0-md5:	6737ac7c84880672e79ab164f6b0e707
+Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
+# Source0-md5:	890946e70c955b528da93b9fe425f741
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -21,8 +21,8 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	freetype-devel >= 2
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.36
-BuildRequires:	gtk+3-devel >= 3.14
+BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	gtk+3-devel >= 3.22
 BuildRequires:	intltool >= 0.50.1
 %if %{with appindicator}
 BuildRequires:	libappindicator-gtk3-devel >= 0.0.13
@@ -84,8 +84,8 @@ do konfigurowania różnych aspektów pulpitu.
 Summary:	MATE Control Center libmate-window-settings library
 Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.36
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	mate-desktop-libs >= 1.17.0
 Requires:	mate-menus-libs >= 1.1.0
 Requires:	xorg-lib-libXi >= 1.5
@@ -102,8 +102,8 @@ Summary:	Development files for libmate-window-settings library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki libmate-window-settings
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.36
-Requires:	gtk+3-devel >= 3.14
+Requires:	glib2-devel >= 1:2.50.0
+Requires:	gtk+3-devel >= 3.22
 Requires:	mate-desktop-devel >= 1.17.0
 Requires:	mate-menus-devel >= 1.1.0
 
