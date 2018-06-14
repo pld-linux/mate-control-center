@@ -5,12 +5,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.20.2
+Version:	1.20.3
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	a239450c0f125ef47c6e33a2586169a4
+# Source0-md5:	3e9757a2b1840895cd5a96c89bca8b29
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -138,7 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,jv,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ku_IQ,jv,pms}
 
 desktop-file-install \
 	--remove-category="MATE" \
