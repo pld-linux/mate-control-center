@@ -5,13 +5,14 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.20.4
+Version:	1.22.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	26e02fe9ff891e74acde69454511fb01
+Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
+# Source0-md5:	3c682adb9b575d1fcaf14492c9e1cdfd
 URL:		http://wiki.mate-desktop.org/mate-control-center
+BuildRequires:	accountsservice-devel >= 0.6.21
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-devel
@@ -35,9 +36,9 @@ BuildRequires:	libxklavier-devel >= 5.2
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	marco-devel >= 1.17.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.17.0
-BuildRequires:	mate-menus-devel >= 1.1.0
-BuildRequires:	mate-settings-daemon-devel >= 1.17.0
+BuildRequires:	mate-desktop-devel >= 1.21.2
+BuildRequires:	mate-menus-devel >= 1.21.0
+BuildRequires:	mate-settings-daemon-devel >= 1.21.2
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -55,6 +56,7 @@ BuildRequires:	xorg-lib-libXxf86misc-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	accountsservice-libs >= 0.6.21
 Requires:	dconf >= 0.13.4
 Requires:	desktop-file-utils
 Requires:	gsettings-desktop-schemas
@@ -66,7 +68,7 @@ Requires:	libappindicator-gtk3 >= 0.0.13
 Requires:	libmatekbd >= 1.17.0
 Requires:	libxklavier >= 5.2
 Requires:	marco-libs >= 1.17.0
-Requires:	mate-settings-daemon >= 1.17.0
+Requires:	mate-settings-daemon >= 1.21.2
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
@@ -86,8 +88,8 @@ Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
-Requires:	mate-desktop-libs >= 1.17.0
-Requires:	mate-menus-libs >= 1.1.0
+Requires:	mate-desktop-libs >= 1.21.2
+Requires:	mate-menus-libs >= 1.21.0
 Requires:	xorg-lib-libXi >= 1.5
 Conflicts:	mate-control-center < 1.5.3-2
 
@@ -104,8 +106,8 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.50.0
 Requires:	gtk+3-devel >= 3.22
-Requires:	mate-desktop-devel >= 1.17.0
-Requires:	mate-menus-devel >= 1.1.0
+Requires:	mate-desktop-devel >= 1.21.2
+Requires:	mate-menus-devel >= 1.21.0
 
 %description devel
 Development files for libmate-window-settings library.
@@ -138,7 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ku_IQ,jv,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,kab,ku_IQ,jv,pms}
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{frp,ku_IQ}
 
 desktop-file-install \
