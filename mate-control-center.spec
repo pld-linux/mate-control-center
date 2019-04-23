@@ -5,12 +5,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.22.0
+Version:	1.22.1
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	3c682adb9b575d1fcaf14492c9e1cdfd
+# Source0-md5:	df96ba5881a1e957945da6770cb8b1df
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	accountsservice-devel >= 0.6.21
 BuildRequires:	autoconf >= 2.53
@@ -221,11 +221,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/mate-theme-installer.desktop
 %{_desktopdir}/mate-window-properties.desktop
 %{_desktopdir}/matecc.desktop
-%{_iconsdir}/hicolor/*x*/apps/mate-network-properties.png
-%{_iconsdir}/hicolor/*x*/apps/mate-preferences-desktop-display.png
 %{_iconsdir}/hicolor/*x*/apps/mate-typing-monitor.png
-%{_iconsdir}/hicolor/scalable/apps/mate-network-properties.svg
-%{_iconsdir}/hicolor/scalable/apps/mate-preferences-desktop-display.svg
 %{_iconsdir}/hicolor/scalable/apps/mate-typing-monitor.svg
 %{_mandir}/man1/mate-about-me.1*
 %{_mandir}/man1/mate-appearance-properties.1*
