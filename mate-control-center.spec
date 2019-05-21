@@ -140,8 +140,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,kab,ku_IQ,jv,pms}
+
+# not supported by glibc
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ku_IQ,jv,pms}
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{frp,ku_IQ}
+# so far (July 2014) it's the only package that ships Valencian variant of GNOME/MATE help
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ca@valencia
 
 desktop-file-install \
 	--remove-category="MATE" \
@@ -152,9 +156,6 @@ desktop-file-install \
 
 # delete mime cache
 %{__rm} $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
-
-# so far (July 2014) it's the only package that ships Valencian variant of GNOME/MATE help
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ca@valencia
 
 %find_lang %{name} --with-mate
 
