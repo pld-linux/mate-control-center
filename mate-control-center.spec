@@ -5,12 +5,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.22.1
-Release:	2
+Version:	1.22.2
+Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	df96ba5881a1e957945da6770cb8b1df
+# Source0-md5:	41393392dfc7da8fb9f1fddaab695eb7
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	accountsservice-devel >= 0.6.21
 BuildRequires:	autoconf >= 2.53
@@ -142,8 +142,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
 
 # not supported by glibc
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ku_IQ,jv,pms}
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{frp,ku_IQ}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ie,jv,ku_IQ,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{frp,ie,ku_IQ}
 # so far (July 2014) it's the only package that ships Valencian variant of GNOME/MATE help
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ca@valencia
 
