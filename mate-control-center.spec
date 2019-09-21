@@ -143,8 +143,6 @@ rm -rf $RPM_BUILD_ROOT
 # not supported by glibc
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ie,jv,ku_IQ,pms}
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{frp,ie,ku_IQ}
-# so far (July 2014) it's the only package that ships Valencian variant of GNOME/MATE help
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ca@valencia
 
 desktop-file-install \
 	--remove-category="MATE" \
