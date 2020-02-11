@@ -5,12 +5,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.22.2
+Version:	1.24.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	41393392dfc7da8fb9f1fddaab695eb7
+Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
+# Source0-md5:	cab0b623b42aa4b0404c732e5f295a1c
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	accountsservice-devel >= 0.6.21
 BuildRequires:	autoconf >= 2.53
@@ -20,11 +20,11 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	dconf-devel >= 0.13.4
 BuildRequires:	desktop-file-utils
 BuildRequires:	docbook-dtd412-xml
+BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2
-BuildRequires:	gettext-tools >= 0.10.40
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.22
-BuildRequires:	intltool >= 0.50.1
 %if %{with appindicator}
 BuildRequires:	libappindicator-gtk3-devel >= 0.0.13
 %endif
@@ -36,10 +36,11 @@ BuildRequires:	libxklavier-devel >= 5.2
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	marco-devel >= 1.17.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.21.2
+BuildRequires:	mate-desktop-devel >= 1.23.2
 BuildRequires:	mate-menus-devel >= 1.21.0
-BuildRequires:	mate-settings-daemon-devel >= 1.21.2
+BuildRequires:	mate-settings-daemon-devel >= 1.23.1
 BuildRequires:	pango-devel
+BuildRequires:	polkit-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.596
@@ -67,7 +68,7 @@ Requires:	libappindicator-gtk3 >= 0.0.13
 Requires:	libmatekbd >= 1.17.0
 Requires:	libxklavier >= 5.2
 Requires:	marco-libs >= 1.17.0
-Requires:	mate-settings-daemon >= 1.21.2
+Requires:	mate-settings-daemon >= 1.23.1
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
@@ -87,7 +88,7 @@ Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
-Requires:	mate-desktop-libs >= 1.21.2
+Requires:	mate-desktop-libs >= 1.23.2
 Requires:	mate-menus-libs >= 1.21.0
 Requires:	xorg-lib-libXi >= 1.5
 Conflicts:	mate-control-center < 1.5.3-2
@@ -105,7 +106,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.50.0
 Requires:	gtk+3-devel >= 3.22
-Requires:	mate-desktop-devel >= 1.21.2
+Requires:	mate-desktop-devel >= 1.23.2
 Requires:	mate-menus-devel >= 1.21.0
 
 %description devel
@@ -118,7 +119,6 @@ Pliki programistyczne biblioteki libmate-window-settings.
 %setup -q
 
 %build
-%{__intltoolize}
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
@@ -189,6 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mate-mouse-properties
 %attr(755,root,root) %{_bindir}/mate-network-properties
 %attr(755,root,root) %{_bindir}/mate-thumbnail-font
+%attr(755,root,root) %{_bindir}/mate-time-admin
 %attr(755,root,root) %{_bindir}/mate-typing-monitor
 %attr(755,root,root) %{_bindir}/mate-window-properties
 %attr(755,root,root) %{_sbindir}/mate-display-properties-install-systemwide
@@ -202,7 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-control-center/keybindings/00-multimedia-key.xml
 %{_datadir}/mate-control-center/keybindings/01-desktop-key.xml
 %{_datadir}/mate-control-center/pixmaps
-%{_datadir}/mate-control-center/ui
+%{_datadir}/mate-time-admin
 %{_datadir}/mime/packages/mate-theme-package.xml
 %{_datadir}/thumbnailers/mate-font-viewer.thumbnailer
 %{_datadir}/polkit-1/actions/org.mate.randr.policy
@@ -217,9 +218,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/mate-network-properties.desktop
 %{_desktopdir}/mate-settings-mouse.desktop
 %{_desktopdir}/mate-theme-installer.desktop
+%{_desktopdir}/mate-time-admin.desktop
 %{_desktopdir}/mate-window-properties.desktop
 %{_desktopdir}/matecc.desktop
 %{_iconsdir}/hicolor/*x*/apps/mate-typing-monitor.png
+%{_iconsdir}/hicolor/*x*/categories/instant-messaging.png
 %{_iconsdir}/hicolor/scalable/apps/mate-typing-monitor.svg
 %{_mandir}/man1/mate-about-me.1*
 %{_mandir}/man1/mate-appearance-properties.1*
