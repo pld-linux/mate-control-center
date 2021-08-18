@@ -5,18 +5,16 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.24.2
+Version:	1.26.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	https://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
-# Source0-md5:	a42584d0327f61ddbde2ab46a7538b08
+Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
+# Source0-md5:	b7c54d0ebd442cd781a49caafc1229af
 URL:		http://wiki.mate-desktop.org/mate-control-center
 BuildRequires:	accountsservice-devel >= 0.6.21
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-devel
-BuildRequires:	dbus-glib-devel
 BuildRequires:	dconf-devel >= 0.13.4
 BuildRequires:	desktop-file-utils
 BuildRequires:	docbook-dtd412-xml
@@ -36,9 +34,8 @@ BuildRequires:	libxklavier-devel >= 5.2
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	marco-devel >= 1.17.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.23.2
+BuildRequires:	mate-desktop-devel >= 1.25.0
 BuildRequires:	mate-menus-devel >= 1.21.0
-BuildRequires:	mate-settings-daemon-devel >= 1.23.1
 BuildRequires:	pango-devel
 BuildRequires:	polkit-devel
 BuildRequires:	pkgconfig
@@ -68,7 +65,7 @@ Requires:	libappindicator-gtk3 >= 0.0.13
 Requires:	libmatekbd >= 1.17.0
 Requires:	libxklavier >= 5.2
 Requires:	marco-libs >= 1.17.0
-Requires:	mate-settings-daemon >= 1.23.1
+Requires:	mate-settings-daemon
 Requires:	shared-mime-info
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
@@ -88,7 +85,7 @@ Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
-Requires:	mate-desktop-libs >= 1.23.2
+Requires:	mate-desktop-libs >= 1.25.0
 Requires:	mate-menus-libs >= 1.21.0
 Requires:	xorg-lib-libXi >= 1.5
 Conflicts:	mate-control-center < 1.5.3-2
@@ -106,7 +103,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.50.0
 Requires:	gtk+3-devel >= 3.22
-Requires:	mate-desktop-devel >= 1.23.2
+Requires:	mate-desktop-devel >= 1.25.0
 Requires:	mate-menus-devel >= 1.21.0
 
 %description devel
