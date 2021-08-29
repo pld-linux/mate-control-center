@@ -11,7 +11,7 @@ License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
 # Source0-md5:	b7c54d0ebd442cd781a49caafc1229af
-URL:		http://wiki.mate-desktop.org/mate-control-center
+URL:		https://wiki.mate-desktop.org/mate-desktop/applications/mate-control-center/
 BuildRequires:	accountsservice-devel >= 0.6.21
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
