@@ -89,6 +89,7 @@ do konfigurowania różnych aspektów pulpitu.
 Summary:	Development files for MATE Control Center
 Summary(pl.UTF-8):	Pliki programistyczne centrum sterowania środowiska MATE
 Group:		X11/Development/Libraries
+Obsoletes:	mate-control-center-libs < 1.28
 
 %description devel
 Development files for MATE Control Center.
