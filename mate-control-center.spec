@@ -5,12 +5,12 @@
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
-Version:	1.26.1
+Version:	1.28.0
 Release:	1
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
-Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	54e25408f9df434d5832de73ec755191
+Source0:	https://pub.mate-desktop.org/releases/1.28/%{name}-%{version}.tar.xz
+# Source0-md5:	35cb8c72ad35985aa60945cfe772751c
 URL:		https://wiki.mate-desktop.org/mate-desktop/applications/mate-control-center/
 BuildRequires:	accountsservice-devel >= 0.6.21
 BuildRequires:	autoconf >= 2.53
@@ -21,12 +21,13 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2
 BuildRequires:	gettext-tools >= 0.19.8
-BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	glib2-devel >= 1:2.64.0
 BuildRequires:	gtk+3-devel >= 3.22
 %if %{with appindicator}
 BuildRequires:	libappindicator-gtk3-devel >= 0.0.13
 %endif
 BuildRequires:	libcanberra-gtk3-devel
+BuildRequires:	libgtop-devel >= 2.0
 BuildRequires:	libmatekbd-devel >= 1.17.0
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libtool >= 1:1.4.3
@@ -34,14 +35,16 @@ BuildRequires:	libxklavier-devel >= 5.2
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	marco-devel >= 1.17.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.25.0
+BuildRequires:	mate-desktop-devel >= 1.27.1
 BuildRequires:	mate-menus-devel >= 1.21.0
 BuildRequires:	pango-devel
 BuildRequires:	polkit-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.596
+BuildRequires:	systemd-devel >= 1:248
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	udisks2-devel >= 2
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
@@ -56,6 +59,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	accountsservice-libs >= 0.6.21
 Requires:	dconf >= 0.13.4
 Requires:	desktop-file-utils
+Requires:	glib2 >= 1:2.64.0
 Requires:	gsettings-desktop-schemas
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
@@ -65,8 +69,10 @@ Requires:	libappindicator-gtk3 >= 0.0.13
 Requires:	libmatekbd >= 1.17.0
 Requires:	libxklavier >= 5.2
 Requires:	marco-libs >= 1.17.0
+Requires:	mate-desktop >= 1.27.1
 Requires:	mate-settings-daemon
 Requires:	shared-mime-info
+Obsoletes:	mate-control-center-libs < 1.28
 Conflicts:	libfm < 0.1.17-2
 Conflicts:	lxappearance < 0.5.2-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,38 +85,16 @@ interface for configuration of various aspects of your desktop.
 Centrum sterowania środowiska MATE Desktop. Jest to główny interfejs
 do konfigurowania różnych aspektów pulpitu.
 
-%package libs
-Summary:	MATE Control Center libmate-window-settings library
-Summary(pl.UTF-8):	Biblioteka libmate-window-settings centrum sterowania MATE
-Group:		X11/Libraries
-Requires:	glib2 >= 1:2.50.0
-Requires:	gtk+3 >= 3.22
-Requires:	mate-desktop-libs >= 1.25.0
-Requires:	mate-menus-libs >= 1.21.0
-Requires:	xorg-lib-libXi >= 1.5
-Conflicts:	mate-control-center < 1.5.3-2
-
-%description libs
-This package contains libmate-window-settings library.
-
-%description libs -l pl.UTF-8
-Pakiet ten zawiera bibliotekę libmate-window-settings.
-
 %package devel
-Summary:	Development files for libmate-window-settings library
-Summary(pl.UTF-8):	Pliki programistyczne biblioteki libmate-window-settings
+Summary:	Development files for MATE Control Center
+Summary(pl.UTF-8):	Pliki programistyczne centrum sterowania środowiska MATE
 Group:		X11/Development/Libraries
-Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.50.0
-Requires:	gtk+3-devel >= 3.22
-Requires:	mate-desktop-devel >= 1.25.0
-Requires:	mate-menus-devel >= 1.21.0
 
 %description devel
-Development files for libmate-window-settings library.
+Development files for MATE Control Center.
 
 %description devel -l pl.UTF-8
-Pliki programistyczne biblioteki libmate-window-settings.
+Pliki programistyczne centrum sterowania środowiska MATE.
 
 %prep
 %setup -q
@@ -131,14 +115,14 @@ Pliki programistyczne biblioteki libmate-window-settings.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/window-manager-settings/libmarco.la
-
+# almost empty version of es
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 # not supported by glibc
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ie,jv,ku_IQ,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ie,jv,ku_IQ,pms}
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{frp,ie,ku_IQ}
 
 desktop-file-install \
@@ -168,9 +152,6 @@ rm -rf $RPM_BUILD_ROOT
 %update_mime_database
 %glib_compile_schemas
 
-%post	libs -p /sbin/ldconfig
-%postun	libs -p /sbin/ldconfig
-
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
@@ -185,13 +166,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mate-keyboard-properties
 %attr(755,root,root) %{_bindir}/mate-mouse-properties
 %attr(755,root,root) %{_bindir}/mate-network-properties
+%attr(755,root,root) %{_bindir}/mate-system-info
 %attr(755,root,root) %{_bindir}/mate-thumbnail-font
 %attr(755,root,root) %{_bindir}/mate-time-admin
 %attr(755,root,root) %{_bindir}/mate-typing-monitor
 %attr(755,root,root) %{_bindir}/mate-window-properties
 %attr(755,root,root) %{_sbindir}/mate-display-properties-install-systemwide
-%dir %{_libdir}/window-manager-settings
-%attr(755,root,root) %{_libdir}/window-manager-settings/libmarco.so
 %{_sysconfdir}/xdg/menus/matecc.menu
 %{_datadir}/desktop-directories/matecc.directory
 %{_datadir}/glib-2.0/schemas/org.mate.control-center*.gschema.xml
@@ -214,6 +194,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/mate-keyboard.desktop
 %{_desktopdir}/mate-network-properties.desktop
 %{_desktopdir}/mate-settings-mouse.desktop
+%{_desktopdir}/mate-system-info.desktop
 %{_desktopdir}/mate-theme-installer.desktop
 %{_desktopdir}/mate-time-admin.desktop
 %{_desktopdir}/mate-window-properties.desktop
@@ -237,20 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/mate-typing-monitor.1*
 %{_mandir}/man1/mate-window-properties.1*
 
-%files libs
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libmate-slab.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libmate-slab.so.0
-%attr(755,root,root) %{_libdir}/libmate-window-settings.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libmate-window-settings.so.1
-
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libmate-slab.so
-%attr(755,root,root) %{_libdir}/libmate-window-settings.so
-%{_includedir}/libmate-slab
-%{_includedir}/mate-window-settings-2.0
 %{_pkgconfigdir}/mate-default-applications.pc
 %{_pkgconfigdir}/mate-keybindings.pc
-%{_pkgconfigdir}/mate-slab.pc
-%{_pkgconfigdir}/mate-window-settings-2.0.pc
