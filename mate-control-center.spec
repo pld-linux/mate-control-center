@@ -1,7 +1,3 @@
-#
-# Conditional build:
-%bcond_without	appindicator	# application indicators support (in mate-typing-monitor)
-
 Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
@@ -23,9 +19,7 @@ BuildRequires:	freetype-devel >= 2
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.64.0
 BuildRequires:	gtk+3-devel >= 3.22
-%if %{with appindicator}
-BuildRequires:	libappindicator-gtk3-devel >= 0.0.13
-%endif
+BuildRequires:	libayatana-appindicator-gtk3-devel >= 0.0.13
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libgtop-devel >= 2.0
 BuildRequires:	libmatekbd-devel >= 1.17.0
@@ -63,9 +57,7 @@ Requires:	glib2 >= 1:2.64.0
 Requires:	gsettings-desktop-schemas
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
-%if %{with appindicator}
-Requires:	libappindicator-gtk3 >= 0.0.13
-%endif
+Requires:	libayatana-appindicator-gtk3 >= 0.0.13
 Requires:	libmatekbd >= 1.17.0
 Requires:	libxklavier >= 5.2
 Requires:	marco-libs >= 1.17.0
@@ -106,7 +98,6 @@ Pliki programistyczne centrum sterowania środowiska MATE.
 %{__autoconf}
 %{__automake}
 %configure \
-	%{!?with_appindicator:--disable-appindicator} \
 	--disable-schemas-compile \
 	--disable-silent-rules \
 	--disable-static \
