@@ -2,7 +2,7 @@ Summary:	MATE Desktop control-center
 Summary(pl.UTF-8):	Centrum sterowania środowiska MATE Desktop
 Name:		mate-control-center
 Version:	1.28.0
-Release:	2
+Release:	3
 License:	LGPL v2+ (libmate-slab), GPL v2+ (the rest)
 Group:		X11/Applications
 Source0:	https://pub.mate-desktop.org/releases/1.28/%{name}-%{version}.tar.xz
